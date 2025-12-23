@@ -234,7 +234,8 @@ Approches
 ====
 ***Declerative and Scripted pipeline***
 - Declarative -> from jenkins 2.0, its DSL(domain specific language on top of groovy).
-- This is scrictly evaluated before execution, if errors it will not run
+- This is scrictly evaluated before execution, if errors it will not run.
+- It is a wrapper created by jenkins on top of groovy for scrict evaluation.
   
 - Scripted pipeline starts with node. It is purely groovy, jenkins will not validate it, it will execute at runtime.
 - if error comes in middle, it will stop.
@@ -253,9 +254,32 @@ Approches
     }
   }
 ```
-
-
-
+Environment Variables
+===
+- This block is used in pre-build stage
+- Anything inside stages is build step
+- We use this block before the stages block
+- All stages will have access to the variables
+```
+pipeline{
+ agent{
+   node{
+    label "nodejs"
+   }
+ environment{
+   course = "Jenkins"
+ }
+ }
+ stages{
+   stage('Build'){
+     steps{
+	   echo "Building"
+       echo $course    /* Use the variable inside the stage */
+	   }
+   }
+ }
+}
+```
 
 
 
