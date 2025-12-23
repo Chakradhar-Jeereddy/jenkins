@@ -71,7 +71,11 @@ Pilepline creation
 - Jekins pipeline syntax -> https://www.jenkins.io/doc/book/pipeline/
 ```
 pipeline {  
-    agent any  # which worker node
+    agent{
+       node{
+         label 'AGENT-1' Add this label.
+       }
+    }
     stages {
         stage('Build') {  ## Build state
             steps {
@@ -94,13 +98,69 @@ pipeline {
 - Create a rep jenkins and a file Jenkinsfile (Upper case J)
 - Put the above code and save file
 - In Jenkins job configuration, select SCM: git, repo URL, no creds and branch: main
-- Script path: Jenkinsfile -> save 
+- Script path: Jenkinsfile -> save
+- Click build now
 
 
 Add plugin state view from available plugins
 ===
 - Pipeline: Stage View
 - Install
+- run build again, you can see the stages in UI.
+
+Master and node
+===
+- Jenkins master can't handle all the loads
+- Single server can't have different OS to test
+- We create multiple agents for different purpose and run our jobs there
+- Master will co-ordinate with the agents
+- Master connects to node via SSH
+- Java should be installed in agent.
+
+Create node
+===
+- EC2 instance with name jenkins-agent
+- size: t2.small
+- AMI: Devops practise
+- disk 50gb
+- resize disk
+```
+sudo -i
+lsblk
+growpart /dev/nvme0n1 4
+lsblk
+Add space to /tmp which is root and home
+sudo lvextend -L +20G /dev/mapper/RootVG-homeVol
+sudo lvextend -L +10G /dev/mapper/RootVG-rootVol
+sudo xfs_growfs /
+sudo xfs_growfs /home
+df -h
+```
+- Install Java in the agent server
+- On consol, Manage jenkins -> nodes -> new node
+- Name: AGENT-1
+- Add permenent agent
+- Number of executors: 3   (3 jobs can run at same time)
+- Root directory: /home/ec2-user/jenkins
+- Labels: AGENT-1  (we give nodejs, python based on type of node)
+- Usage: only build jobs with label expression
+- Launch Method: Launch agents via ssh
+- Agent host: 172.31.0.53  (private ip)
+- Credentials for ssh : ec2-user
+- Availability: Keep this agent online as much as possible.
+- Host key verification: non verify and save.
+- Once the agent is added and showing online.
+- Added agent to the pipeline in Jenkinsfile, othrwise it goes to master
+```
+agent {
+    node {
+        label 'my-defined-label'
+        customWorkspace '/some/other/path'
+    }
+}
+```
+- Run the build again, the job will run on agent.
+
 Select built with parameters
 Name: COMPONENT
 Execute shell - 
