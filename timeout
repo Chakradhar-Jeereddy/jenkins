@@ -23,4 +23,9 @@ pipeline{
 	 }
    }
  }
+ post{
+  aborted{
+   echo "The stage has been aborted"
+  }
+ }
 }
