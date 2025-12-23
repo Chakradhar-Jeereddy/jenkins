@@ -1,0 +1,26 @@
+pipeline{
+ agent{
+   node{
+    label "nodejs"
+   }
+ }
+ environment{
+   COURSE = "Jenkins"
+ }
+ options{
+  timeout(time: 10, units: 'SECONDS')  /*Timeout the step if it takes more then 10 seconds.
+ }
+ stages{
+   stage('Build'){
+     steps{
+       script{
+        sh"""
+	     echo "Building"
+         echo $COURSE    /* Use the variable inside the stage */
+         sleep 12
+        """
+       }
+	 }
+   }
+ }
+}
