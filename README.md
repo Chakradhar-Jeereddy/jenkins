@@ -388,3 +388,6 @@ Which is better
 - Polling is pull mechanism
 - Webhook is push mechanism (git will push the event)
 - Webhook is better
+
+Check when condition
+===
