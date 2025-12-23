@@ -370,10 +370,16 @@ Triggers
 ==
 - Build periodically (When you want to run jobs in the night
 - * * * * * (Every minute)
+
 - GitHub hook trigger for GITScm polling (Jenkins receives a github push hook)
+- GitHub hook trigger for GITScm polling
 - Git repo -> Settings -> add webhook ->
 - Playload URL: http://3.231.58.57:8080/github-webhook/
 - content type: application/json
 - SSL verification: Disabled
 - Which events would you like to trigger this webhook?: Commit or diff
+
+- Poll SCM
+- * * * * * -> Every minute
+- Every minute jekins pols github to detect changes.
 ```
