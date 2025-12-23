@@ -266,19 +266,21 @@ pipeline{
    node{
     label "nodejs"
    }
- environment{
-   course = "Jenkins"
  }
+ environment{
+   COURSE = "Jenkins"
  }
  stages{
    stage('Build'){
      steps{
-	   echo "Building"
-       echo $course    /* Use the variable inside the stage */
-	   }
+       script{
+        sh"""
+	     echo "Building"
+         echo $COURSE    /* Use the variable inside the stage */
+        """
+       }
+	 }
    }
- }
-}
 ```
 
 
