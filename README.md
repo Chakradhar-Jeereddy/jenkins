@@ -191,7 +191,44 @@ Clean Workspace
         }
     }
 ```
-
+```
+pipeline{
+ agent{
+   node{
+    label "nodejs"
+   }
+ }
+ stages{
+   stage('Build'){
+     steps{
+	   echo "Building"
+	   }
+   }
+   stage('Test'){
+     steps{
+	   echo "Testing"
+	   }
+   }
+   stage('Deploying'){
+     steps{
+	   echo "Deploying"
+	   }
+   }
+ }
+ post{
+  always{
+     echo "Always say Hi and Hello"
+     cleanWs()
+  }
+  success{
+   echo "I will run if failure"
+  }
+  failure{
+   echo "I will run if success"
+  }
+ }
+}
+```
 
 
 
