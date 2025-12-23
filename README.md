@@ -38,15 +38,65 @@ netstat -nltp # check port 8080
 - /var/lib/jenkins/secrets/initialAdminPassword for first time login
 - Install suggested plugins
 
+*** In jenkins everything is a job***
+
 Types of jobs
 ============
 Freestyle jobs
 Pipelines
 
+Testing
+===
 - Create job
 - Name: hello-world
 - Freestyle project -> OK
+- Build steps -> Add biuld step -> execute shell command
+- echo "Hello World" -> save
+- Click build now
+- Click the running job and console output to see log.
+  
+Disadvantages of freestyle
+===
+- No version control like git
+- Cannot track changes
+- Cannot revert to earlier stage
+- Tough to do changes
+- Cannot verify (if someone deletes the scripts)
+
+Pilepline creation
+===
+- Click New item
+- Name: hello-pipeline
 - 
+Add plugin state view from available plugins
+===
+- Pipeline: Stage View
+- Install
+- pipeline -> pipeline script from SCM(source code managment) -> sample -> hello world
+- Jekins pipeline syntax -> https://www.jenkins.io/doc/book/pipeline/
+```
+pipeline {  
+    agent any  # which worker node
+    stages {
+        stage('Build') {  ## Build state
+            steps {
+                //
+            }
+        }
+        stage('Test') {  ## Testing stage
+            steps {
+                //
+            }
+        }
+        stage('Deploy') {  ## Deployment stage
+            steps {
+                //
+            }
+        }
+    }
+}
+```
+- Create a rep jenkins and a file Jenkinsfile (Upper case J)
 Select built with parameters
 Name: COMPONENT
 Execute shell - 
