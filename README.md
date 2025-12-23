@@ -289,6 +289,7 @@ pipeline{
 Timeout
 ===
 - After timeout Jenkins will abort the pipeline.
+- Handle the obort in the post-build section
 ```
 pipeline{
  agent{
@@ -300,7 +301,7 @@ pipeline{
    COURSE = "Jenkins"
  }
  options{
-  timeout(time: 10, units: 'SECONDS')  /*Timeout the step if it takes more then 10 seconds.
+  timeout(time: 10, unit: 'SECONDS')  /*Timeout the step if it takes more then 10 seconds. */
  }
  stages{
    stage('Build'){
@@ -314,6 +315,11 @@ pipeline{
        }
 	 }
    }
+ }
+ post{
+  aborted{
+   echo "The stage has been aborted"
+  }
  }
 }
 ```
