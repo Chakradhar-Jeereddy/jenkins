@@ -33,4 +33,5 @@ pipeline{
    echo "say no hi when failure"
   }
  }
+}
 
