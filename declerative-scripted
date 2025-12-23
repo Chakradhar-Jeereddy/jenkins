@@ -1,0 +1,48 @@
+pipeline{
+ agent{
+  node{
+   label "nodejs"
+  }
+ }
+ stages{
+  stage('Build'){                /* put script block in steps */
+    steps{
+       script{
+          sh"""
+             echo "Building"
+          """
+       }
+    }
+  }
+  stage('Test'){
+    steps{
+       script{
+          sh"""
+             echo "Testing"
+          """
+       }
+    }
+  }
+  stage('Deploy'){
+    steps{
+       script{
+          sh"""
+             echo "Tesing"
+          """
+       }
+    }
+  }
+ }
+ post{
+  always{
+   echo "Always say hi again"
+   cleanWs()
+  }
+  success{
+   echo "Say hi when success"
+  }
+  failure{
+   echo "say no hi when failure"
+  }
+ }
+}
