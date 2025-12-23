@@ -67,11 +67,6 @@ Pilepline creation
 ===
 - Click New item
 - Name: hello-pipeline
-- 
-Add plugin state view from available plugins
-===
-- Pipeline: Stage View
-- Install
 - pipeline -> pipeline script from SCM(source code managment) -> sample -> hello world
 - Jekins pipeline syntax -> https://www.jenkins.io/doc/book/pipeline/
 ```
@@ -97,6 +92,12 @@ pipeline {
 }
 ```
 - Create a rep jenkins and a file Jenkinsfile (Upper case J)
+
+
+Add plugin state view from available plugins
+===
+- Pipeline: Stage View
+- Install
 Select built with parameters
 Name: COMPONENT
 Execute shell - 
