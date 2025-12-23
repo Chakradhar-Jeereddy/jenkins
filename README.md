@@ -281,6 +281,8 @@ pipeline{
        }
 	 }
    }
+ }
+}
 ```
 
 
@@ -298,7 +300,8 @@ pipeline{
    COURSE = "Jenkins"
  }
  options{
-  timeout(time: 10, units: 'SECONDS')
+  timeout(time: 10, units: 'SECONDS')  /*Timeout the step if it takes more then 10 seconds.
+ }
  stages{
    stage('Build'){
      steps{
@@ -311,4 +314,6 @@ pipeline{
        }
 	 }
    }
+ }
+}
 ```
