@@ -382,4 +382,9 @@ Triggers
 - Poll SCM
 - * * * * * -> Every minute
 - Every minute jekins pols github to detect changes.
-```
+
+Which is better
+==
+- Polling is pull mechanism
+- Webhook is push mechanism (git will push the event)
+- Webhook is better
