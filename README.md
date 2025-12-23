@@ -285,9 +285,9 @@ pipeline{
 }
 ```
 
-
-Timeout
+Options
 ===
+***Timeout:***
 - After timeout Jenkins will abort the pipeline.
 - Handle the obort in the post-build section
 ```
@@ -322,4 +322,58 @@ pipeline{
   }
  }
 }
+```
+***One build at a time:***
+- disableConcurrentBuilds
+- Result: Build 9 is already in progress
+```
+options{
+ disableConcurrentBuilds()
+}
+```
+
+Parameters
+===
+- After adding parameters, run the build at least once for jekins to execute and undestand.
+- During the next run the parameters will be presented.
+- Build with parameters
+- Accessing the input params using ${params.<variable name>}
+```
+pipeline{
+ agent{
+   node{
+     label "nodejs"
+   }
+ }
+ parameters {
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+        booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+ }
+ stages{
+   stage('build'){
+     steps{
+      echo "hello"
+      echo "Hello ${params.PERSON}"
+      echo "Biography: ${params.BIOGRAPHY}"
+      echo "Toggle: ${params.TOGGLE}"
+      echo "Choice: ${params.CHOICE}"
+      echo "Password: ${params.PASSWORD}"
+     }
+   }
+ }
+}
+```
+Triggers
+==
+- Build periodically (When you want to run jobs in the night
+- * * * * * (Every minute)
+- GitHub hook trigger for GITScm polling (Jenkins receives a github push hook)
+- Git repo -> Settings -> add webhook ->
+- Playload URL: http://3.231.58.57:8080/github-webhook/
+- content type: application/json
+- SSL verification: Disabled
+- Which events would you like to trigger this webhook?: Commit or diff
 ```
