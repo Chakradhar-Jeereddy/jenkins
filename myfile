@@ -4,7 +4,7 @@ pipeline{
    label "nodejs"
   }
  }
-stages{
+ stages{
   stage('Build'){
     steps{
      echo "Building"
@@ -20,8 +20,8 @@ stages{
      echo "Deploying"
     }
   }
-}
-post{
+ }
+ post{
   always{
    echo "Always say hi again"
    cleanWs()
@@ -32,5 +32,5 @@ post{
   failure{
    echo "say no hi when failure"
   }
-}
-}
+ }
+
