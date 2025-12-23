@@ -5,14 +5,14 @@ pipeline{
    }
  }
  environment{
-   course = "Jenkins"
+   COURSE = "Jenkins"
  }
  stages{
    stage('Build'){
      steps{
 	     echo "Building"
-       echo $course    /* Use the variable inside the stage */
-	   }
+         echo $COURSE    /* Use the variable inside the stage */
+	 }
    }
  }
 }
