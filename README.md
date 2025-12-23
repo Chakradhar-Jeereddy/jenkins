@@ -241,6 +241,18 @@ Approches
 
 ***Hybrid appoach***
 - Mixing both declarative and scripted.
+```
+ stages{
+  stage('Build'){                /* put script block in steps */
+    steps{
+       script{
+          sh"""
+             echo "Building"
+          """
+       }
+    }
+  }
+```
 
 
 
