@@ -1,0 +1,18 @@
+pipeline{
+ agent{
+   node{
+    label "nodejs"
+   }
+ }
+ environment{
+   course = "Jenkins"
+ }
+ stages{
+   stage('Build'){
+     steps{
+	     echo "Building"
+       echo $course    /* Use the variable inside the stage */
+	   }
+   }
+ }
+}
