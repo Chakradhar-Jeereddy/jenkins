@@ -75,23 +75,26 @@ pipeline {
     stages {
         stage('Build') {  ## Build state
             steps {
-                //
+                echo "Building"
             }
         }
         stage('Test') {  ## Testing stage
             steps {
-                //
+               echo "Testing"
             }
         }
         stage('Deploy') {  ## Deployment stage
             steps {
-                //
+               echo "Deploying"
             }
         }
     }
 }
 ```
 - Create a rep jenkins and a file Jenkinsfile (Upper case J)
+- Put the above code and save file
+- In Jenkins job configuration, select SCM: git, repo URL, no creds and branch: main
+- Script path: Jenkinsfile -> save 
 
 
 Add plugin state view from available plugins
