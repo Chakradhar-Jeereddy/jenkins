@@ -284,24 +284,31 @@ pipeline{
 ```
 
 
-
-
-Select built with parameters
-Name: COMPONENT
-Execute shell - 
-ansible-playbook roboshop.yml -i inv  -e ansible_user=centos 
--e ansible_password=DevOps321 -e role_name=${COMPONENT} -
-e hosts=$(echo $COMPONENT | tr [a-z] [A-Z])
-
-ansible-playbook roboshop.yml -i inv  -e ansible_user=centos 
--e ansible_password=DevOps321 -e role_name=${COMPONENT} 
--e hosts=$(echo $COMPONENT | tr [a-z] [A-Z]) 
---ssh-extra-args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-
-Ansible configuration file (Sample)
-https://github.com/ansible/ansible/blob/stable-2.11/examples/ansible.cfg
-copy the content and create a config file in your project
-To enable color
-force_color = True (default is false)
-In jenkins
-Build Environment -> select color ANSI console output
+Timeout
+===
+- After timeout Jenkins will abort the pipeline.
+```
+pipeline{
+ agent{
+   node{
+    label "nodejs"
+   }
+ }
+ environment{
+   COURSE = "Jenkins"
+ }
+ options{
+  timeout(time: 10, units: 'SECONDS')
+ stages{
+   stage('Build'){
+     steps{
+       script{
+        sh"""
+	     echo "Building"
+         echo $COURSE    /* Use the variable inside the stage */
+         sleep 12
+        """
+       }
+	 }
+   }
+```
