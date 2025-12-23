@@ -1,36 +1,35 @@
 pipeline{
  agent{
-   node{
-    label "nodejs"
-   }
+  node{
+   label "nodejs"
+  }
  }
- stages{
-   stage('Build'){
-     steps{
-	   echo "Building"
-	   }
-   }
-   stage('Test'){
-     steps{
-	   echo "Testing"
-	   }
-   }
-   stage('Deploying'){
-     steps{
-	   echo "Deploying"
-	   }
-   }
- }
- post{
+stages{
+  stage('Build'){
+    steps{
+     echo "Building"
+    }
+  }
+  stage('Test'){
+    steps{
+     echo "Testing"
+    }
+  }
+  stage('Deploy'){
+    steps{
+     echo "Deploying"
+    }
+  }
+}
+post{
   always{
-     echo "Always say Hi and Hello"
-     cleanWs()
+   echo "Always say hi again"
   }
   success{
-   echo "I will run if failure"
+   echo "Say hi when success"
   }
   failure{
-   echo "I will run if success"
+   echo "say no hi when failure"
   }
- }
+}
 }
