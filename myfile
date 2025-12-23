@@ -24,6 +24,7 @@ stages{
 post{
   always{
    echo "Always say hi again"
+   cleanWs()
   }
   success{
    echo "Say hi when success"
