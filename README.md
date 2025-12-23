@@ -161,6 +161,46 @@ agent {
 ```
 - Run the build again, the job will run on agent.
 
+Defaut workspace
+===
+- /var/lib/jenkins
+
+Pipeline stages
+===
+- Pre-build -> How to trigger, env setup
+- Build  -> What to do?
+- Post-build -> After completion
+
+Post
+====
+***Always:*** Run the steps in the post section regardless of the completion status of the Pipeline’s or stage’s run.
+```
+    post { 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+    }
+```
+
+Clean Workspace
+===
+```
+    post {
+        always {
+            cleanWs() /* Cleans the workspace after every build */
+        }
+    }
+```
+
+
+
+
+
+
+
+
+
+
 Select built with parameters
 Name: COMPONENT
 Execute shell - 
