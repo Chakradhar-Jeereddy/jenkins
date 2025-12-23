@@ -230,7 +230,17 @@ pipeline{
 }
 ```
 
+Approches
+====
+***Declerative and Scripted pipeline***
+- Declarative -> from jenkins 2.0, its DSL(domain specific language on top of groovy).
+- This is scrictly evaluated before execution, if errors it will not run
+  
+- Scripted pipeline starts with node. It is purely groovy, jenkins will not validate it, it will execute at runtime.
+- if error comes in middle, it will stop.
 
+***Hybrid appoach***
+- Mixing both declarative and scripted.
 
 
 
