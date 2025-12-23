@@ -15,6 +15,14 @@ pipeline{
    stage('build'){
      steps{
       echo "hello"
+     steps{
+      echo "hello"
+      echo "Hello ${params.PERSON}"
+      echo "Biography: ${params.BIOGRAPHY}"
+      echo "Toggle: ${params.TOGGLE}"
+      echo "Choice: ${params.CHOICE}"
+      echo "Password: ${params.PASSWORD}"
+     }
      }
    }
  }
