@@ -1,12 +1,12 @@
 CI
 ===
 Continoues integration is the process of integrating all the code into single artifcat for VM or image for container.
-This should be unit tested, for every commit, the CI jobs is called. The job will cloned,build and tested.
+This should be unit tested. Jenkins job is cloned,built and tested.
 
 Shift-left
 ==========
-Instead of scanning and testing one the development is complted, we can shift/test while development is onging.
-Backlog will reduce. Testing will be done 100s of times, issues will be detected and resolved thoroughly.
+Instead of scanning and testing once the development is complted, we can shift/test while development is onging.
+Backlog gets reduced. Testing will be done 100s of times, issues gets detected and resolved thoroughly.
 
 - CI Tools
 
