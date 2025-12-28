@@ -130,10 +130,12 @@ lsblk
 growpart /dev/nvme0n1 4
 lsblk
 Add space to /tmp which is root and home
-sudo lvextend -L +20G /dev/mapper/RootVG-homeVol
+sudo lvextend -L +10G /dev/mapper/RootVG-homeVol
 sudo lvextend -L +10G /dev/mapper/RootVG-rootVol
+sudo lvextend -L +10G /dev/mapper/RootVG-varVol
 sudo xfs_growfs /
 sudo xfs_growfs /home
+sudo xfs_growfs /var
 df -h
 ```
 - Install Java in the agent server
