@@ -124,11 +124,9 @@ Create node
 - disk 50gb
 - resize disk
 ```
-sudo -i
 lsblk
-growpart /dev/nvme0n1 4
+sudo growpart /dev/nvme0n1 4
 lsblk
-Add space to /tmp which is root and home
 sudo lvextend -L +10G /dev/mapper/RootVG-homeVol
 sudo lvextend -L +10G /dev/mapper/RootVG-rootVol
 sudo lvextend -L +10G /dev/mapper/RootVG-varVol
